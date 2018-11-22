@@ -156,7 +156,7 @@ namespace Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents
                 if(test==2||test==0)
                 {
                     _mahuaApi.SendPrivateMessage(context.FromQq)
-                        .Text("QQ号列表中已存在 ")
+                        .Text("QQ号列表中不存在 ")
                         .Text(Convert.ToString(result))
                         .Done();
                 }
@@ -191,7 +191,7 @@ namespace Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents
                 if (kongzhi==2)
                 {
                     _mahuaApi.SendPrivateMessage(context.FromQq)
-                       .Text("词条列表中不存在 ")
+                       .Text("词条列表中已存在 ")
                        .Text(Convert.ToString(result))
                        .Done();
                 }
