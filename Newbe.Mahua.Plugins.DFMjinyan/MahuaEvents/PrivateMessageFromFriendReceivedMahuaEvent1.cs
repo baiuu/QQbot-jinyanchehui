@@ -30,7 +30,7 @@ namespace Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents
         }
         public string getDigit1(string str)
         {
-            string result = str.Substring(str.LastIndexOf("=") + 1, (str.Length - str.LastIndexOf("=") - 1));
+            string result = str.Substring(str.IndexOf("=") + 1, (str.Length - str.LastIndexOf("=") - 1));
             return result;   //字符串保存
         }
 
@@ -67,6 +67,8 @@ namespace Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents
                 .Text("删除所有禁言词条 clearLine")
                 .Newline()
                 .Text("查看所有禁言词条 showLine")
+                .Newline()
+                .Text("调整执行模式 modeSet=X X取1、2、3，分别代表只禁言指定QQ号的禁言词条，禁言所有人发出禁言词条和禁言随机概率禁言指定QQ的禁言词条")
                 .Done();
 
             //匹配命令类型的正则表达式
@@ -79,6 +81,7 @@ namespace Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents
             Regex clearQQ = new Regex("clearQQ");
             Regex showQQ = new Regex("showQQ");
             Regex showLine = new Regex("showLine");
+            Regex mode = new Regex("modeSet");
 
             //根据不同的输入命令调整相应的参数值
             if (addQQ.IsMatch(context.Message) == true)
@@ -291,7 +294,37 @@ namespace Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents
                 }
             }
 
-                // 不要忘记在MahuaModule中注册
+            if (mode.IsMatch(context.Message) == true)
+            {
+                int result = getDigit(context.Message);
+                if (result < 1 || result > 3)
+                {
+                    _mahuaApi.SendPrivateMessage(context.FromQq)
+                        .Text("设定执行模式错误：模式值只能为1，1，3中的一个！")
+                        .Done();
+                }
+                else
+                {
+                    Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents.Common.execuateMode = result;
+                    switch (result)
+                    {
+                        case 1:
+                            _mahuaApi.SendPrivateMessage(context.FromQq)
+                                .Text("执行模式已设置为 常规模式，只禁言指定QQ号的禁言词条")
+                                .Done(); break;
+                        case 2:
+                            _mahuaApi.SendPrivateMessage(context.FromQq)
+                                .Text("执行模式已设置为 强力模式，禁言所有人发出禁言词条")
+                                .Done(); break;
+                        case 3:
+                            _mahuaApi.SendPrivateMessage(context.FromQq)
+                                .Text("执行模式已设置为 随机模式，随机禁言指定QQ号的禁言词条")
+                                .Done(); break;
+                    }
+                }
             }
+
+            // 不要忘记在MahuaModule中注册
+        }
     }
 }
