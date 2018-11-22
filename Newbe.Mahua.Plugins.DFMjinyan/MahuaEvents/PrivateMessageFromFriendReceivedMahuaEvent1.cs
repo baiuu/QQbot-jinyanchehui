@@ -30,7 +30,7 @@ namespace Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents
         }
         public string getDigit1(string str)
         {
-            string result = str.Substring(str.IndexOf("=") + 1, (str.Length - str.LastIndexOf("=") - 1));
+            string result = str.Substring(str.IndexOf("=") + 1, (str.Length - str.IndexOf("=") - 1));
             return result;   //字符串保存
         }
 
