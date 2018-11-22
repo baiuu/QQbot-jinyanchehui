@@ -30,6 +30,8 @@ namespace Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents
 
         public void ProcessGroupMessage(GroupMessageReceivedContext context)
         {
+            Random r = new Random(Guid.NewGuid().GetHashCode());
+            int x = r.Next(1,3);
             var token = context.MessageCancelToken;
             Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents.Common.msg = context.Message;
             Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents.Common.msgQq = context.FromQq;
@@ -63,8 +65,6 @@ namespace Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents
 
             if (Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents.Common.execuateMode == 3)
             {
-                Random r = new Random(2);
-                int x=r.Next();
                 for (int k = 0; k < Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents.Common.DieList.Count; k++)
                 {
                     if (Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents.Common.msg.Contains(Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents.Common.DieList[k]))
