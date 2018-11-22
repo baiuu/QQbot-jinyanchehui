@@ -88,6 +88,6 @@ namespace Newbe.Mahua.Plugins.DFMjinyan.MahuaEvents
            // throw new NotImplementedException();
 
             // 不要忘记在MahuaModule中注册
-        }
+       
     }
 }
