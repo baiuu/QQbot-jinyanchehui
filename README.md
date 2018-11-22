@@ -1,6 +1,6 @@
 # QQbot-jinyanchehui
 QQbot-禁言撤回群员消息  
-基于Newbe.Mahua.Framework开发的QQ机器人，可以检测QQ群中的复读行为并禁言相关的群成员  
+基于Newbe.Mahua.Framework开发的QQ机器人，可以检测QQ群中的干话黑子行为并禁言相关的群成员  
 Newbe.Mahua.Framework项目地址：https://github.com/newbe36524/Newbe.Mahua.Framework  
 感谢Newbe编写的这个SDK和相应的教程！  
 
